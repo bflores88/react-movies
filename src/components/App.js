@@ -1,6 +1,13 @@
 import React from "react";
 
-const App = () => <div>Start Here!</div>;
+import Header from "./elements/Header";
+
+const App = () => (
+  <div>
+    <Header />
+    Start Here!
+  </div>
+);
 
 export default App;
 
