@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/static/js/main.0248c8d1.chunk.js",
+    "main.js.map": "/static/js/main.0248c8d1.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.6c55b726.js",
+    "runtime-main.js.map": "/static/js/runtime-main.6c55b726.js.map",
+    "static/js/2.a5e6049a.chunk.js": "/static/js/2.a5e6049a.chunk.js",
+    "static/js/2.a5e6049a.chunk.js.map": "/static/js/2.a5e6049a.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.a50a33b8cd213fd156b845840db41a61.js": "/precache-manifest.a50a33b8cd213fd156b845840db41a61.js",
+    "service-worker.js": "/service-worker.js",
+    "static/media/no_image.jpg": "/static/media/no_image.31f5bb1d.jpg",
+    "static/media/reactMovie_logo.png": "/static/media/reactMovie_logo.08494abf.png",
+    "static/media/tmdb_logo.svg": "/static/media/tmdb_logo.30cd724b.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6c55b726.js",
+    "static/js/2.a5e6049a.chunk.js",
+    "static/js/main.0248c8d1.chunk.js"
+  ]
+}
