@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import {
-  API_URL,
-  API_KEY,
   POSTER_SIZE,
   BACKDROP_SIZE,
-  IMAGE_BASE_URL
+  IMAGE_BASE_URL,
+  SEARCH_BASE_URL,
+  POPULAR_BASE_URL
 } from "../config";
 
 // import Components;
@@ -20,6 +20,12 @@ import { useHomeFetch } from "./hooks/useHomeFetch";
 
 import NoImage from "./images/no_image.jpg";
 
+/* ISSUES
+
+1. Search bar needs to accomodate when no movies exist for the search term.  Currently, entering a nonexistent search term will render the Spinner and search bar will disappear.
+
+*/
+
 const Home = () => {
   const [
     {
@@ -31,11 +37,17 @@ const Home = () => {
   ] = useHomeFetch();
   const [searchTerm, setSearchTerm] = useState("");
 
+  const searchMovies = search => {
+    const endpoint = search ? SEARCH_BASE_URL + search : POPULAR_BASE_URL;
+
+    setSearchTerm(search);
+    fetchMovies(endpoint);
+  };
+
   const loadMoreMovies = () => {
-    const searchEndPoint = `${API_URL}search/movie?api_key=${API_KEY}&query=${searchTerm}&page=${currentPage +
+    const searchEndPoint = `${SEARCH_BASE_URL}${searchTerm}&page=${currentPage +
       1}`;
-    const popularEndPoint = `${API_URL}movie/popular?api_key=${API_KEY}&page=${currentPage +
-      1}`;
+    const popularEndPoint = `${POPULAR_BASE_URL}&page=${currentPage + 1}`;
 
     const endpoint = searchTerm ? searchEndPoint : popularEndPoint;
     fetchMovies(endpoint);
@@ -46,12 +58,14 @@ const Home = () => {
 
   return (
     <>
-      <HeroImage
-        image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
-        title={heroImage.original_title}
-        text={heroImage.overview}
-      />
-      <SearchBar />
+      {!searchTerm && (
+        <HeroImage
+          image={`${IMAGE_BASE_URL}${BACKDROP_SIZE}${heroImage.backdrop_path}`}
+          title={heroImage.original_title}
+          text={heroImage.overview}
+        />
+      )}
+      <SearchBar callback={searchMovies} />
       <Grid header={searchTerm ? "Search Result" : "Popular Movies"}>
         {movies.map(movie => (
           <MovieThumb
@@ -68,7 +82,9 @@ const Home = () => {
         ))}
       </Grid>
       {loading && <Spinner />}
-      <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+      {currentPage < totalPages && !loading && (
+        <LoadMoreBtn text="Load More" callback={loadMoreMovies} />
+      )}
     </>
   );
 };
