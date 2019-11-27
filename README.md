@@ -1,6 +1,8 @@
 ## React RMDB
 
-A movie application site build with React's `create-react-app` and React hooks.
+A movie web application site build with React's `create-react-app` and React hooks.
+
+View on Netlify here: [https://wizardly-stonebraker-feff7c.netlify.com/](https://wizardly-stonebraker-feff7c.netlify.com/)
 
 ### Technologies Used
 
